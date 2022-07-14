@@ -3,12 +3,12 @@ import app from './app.js';
 const port = process.env.PORT || '3000';
 
 const start = async () => {
-  try{
+  try {
     await app.listen({ port });
-  } catch(err){
+  } catch (err) {
     app.log.error(err);
     process.exit(1);
   }
-}
+};
 
 export default start;

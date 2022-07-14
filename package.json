@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node ./index",
     "test": "vitest",
-    "test-coverage": "npm run test -- --coverage"
+    "test-coverage": "npm run test -- --coverage",
+    "lint": "eslint */*.js",
+    "lint-fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,9 @@
     "fastify": "^4.2.1"
   },
   "devDependencies": {
-    "c8": "^7.11.3",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "vitest": "^0.18.0"
   }
 }
