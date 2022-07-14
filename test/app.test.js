@@ -1,5 +1,5 @@
+import { describe, it, expect } from 'vitest';
 import app from '../src/app.js';
-import {describe,it,expect} from 'vitest';
 
 describe('health route', () => {
   describe('get health route', () => {
