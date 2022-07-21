@@ -1,9 +1,11 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import {
+  describe, it, expect, beforeAll,
+} from 'vitest';
 import app from '../src/app.js';
-import beforeSoldiersTest from '../beforeTest/beforeSoldiersTest.js'
+import beforeSoldiersTest from '../beforeTest/beforeSoldiersTest.js';
 
 describe('soldiers route', () => {
-  beforeAll(async () => { await beforeSoldiersTest() });
+  beforeAll(async () => { await beforeSoldiersTest(); });
   describe('post soldiers', () => {
     it('should create a soldier and return 201', async () => {
       const soldier = {
@@ -71,7 +73,7 @@ describe('soldiers route', () => {
   });
 
   describe('get soldiers', () => {
-    it('should return all soldiers that fit the query as an array', async () => {
+    it('should return the soldier with the id', async () => {
       const response = await app.inject({
         method: 'GET',
         url: '/soldiers/id',
