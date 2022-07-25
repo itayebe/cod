@@ -1,0 +1,34 @@
+{
+  "type": "module",
+  "name": "cod",
+  "version": "1.0.0",
+  "description": "Call Of Duty project, managing soldiers and duties using a database and a RESTfull API server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index",
+    "test": "vitest",
+    "test-coverage": "npm run test -- --coverage",
+    "lint": "eslint */*.js",
+    "lint-fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itayebe/cod.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itayebe/cod/issues"
+  },
+  "homepage": "https://github.com/itayebe/cod#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "fastify": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "vitest": "^0.18.0"
+  }
+}
