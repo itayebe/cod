@@ -7,17 +7,17 @@ const database = client.db('cod-db');
 const soldiersCollection = database.collection('soldiers');
 
 const beforeSoldiersTest = async () => {
-    const emptySoldiers = await soldiersCollection.drop();
-    if (emptySoldiers) {
-        const soldier = {
-            _id: 'duplicateId',
-            name: 'name',
-            degree: 'degree',
-            limitations: ['l1', 'l2'],
-            duties: [],
-          };
-        await soldiersCollection.insertOne(soldier);
-    }
-}
+  const emptySoldiers = await soldiersCollection.drop();
+  if (emptySoldiers) {
+    const soldier = {
+      _id: 'duplicateId',
+      name: 'name',
+      degree: 'degree',
+      limitations: ['l1', 'l2'],
+      duties: [],
+    };
+    await soldiersCollection.insertOne(soldier);
+  }
+};
 
 export default beforeSoldiersTest;
