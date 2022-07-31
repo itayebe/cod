@@ -17,8 +17,8 @@ export const makeJusticeBoard = async (request, reply) => {
       try {
         duty = await dutiesCollection.findOne({ _id: new ObjectId(dutyId) });
         score += duty.value;
-      } catch {
-        reply.send(`The duty ${dutyId} was not found`);
+      } catch (error) {
+        reply.send(error);
       }
     }
     justiceBoardArray.push({ id: soldier._id, score });

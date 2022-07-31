@@ -83,7 +83,31 @@ const addDuties = async () => {
       soldiersRequired: 1,
       value: 4,
       soldiers: ['id3'],
-    }]);
+    }, {
+        _id: new ObjectId('62e62b7f21409be8ad77db05'),
+        name: 'name5',
+        location: 'location',
+        time: {
+          start: 'start',
+          end: 'end',
+        },
+        constraints: ['c1', 'c2'],
+        soldiersRequired: 2,
+        value: 2,
+        soldiers: [],
+      }, {
+        _id: new ObjectId('62e62b7f21409be8ad77db06'),
+        name: 'name6',
+        location: 'location',
+        time: {
+          start: 'start',
+          end: 'end',
+        },
+        constraints: ['id1'],
+        soldiersRequired: 1,
+        value: 10,
+        soldiers: [],
+      }]);
   }
 };
 
@@ -93,5 +117,3 @@ const beforeJusticeBoardTest = async () => {
 };
 
 export default beforeJusticeBoardTest;
-
-// beforeJusticeBoardTest();

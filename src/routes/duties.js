@@ -1,5 +1,5 @@
 import dutySchema from '../../schema/duty-schema.js';
-import { createDuty, findDuties, findDutyById, deleteDuty, updateDuty } from '../repository/duties.js'
+import { createDuty, findDuties, findDutyById, deleteDuty, updateDuty, scheduleDuty } from '../repository/duties.js'
 
 const duties = async (app) => {
     
@@ -12,6 +12,8 @@ const duties = async (app) => {
     app.delete('/duties/:id', deleteDuty);
       
     app.patch('/duties/:id', { schema: dutySchema }, updateDuty);
+
+    app.put('/duties/:id/schedule', scheduleDuty);
 }
   
 export default duties;
