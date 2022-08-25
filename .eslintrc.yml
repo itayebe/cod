@@ -6,4 +6,6 @@ extends:
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-rules: {}
+rules: {
+  "linebreak-style": ["error", process.env.NODE_ENV === 'prod' ? "unix" : "windows"]
+}

@@ -59,14 +59,8 @@ export const updateDuty = async (request, reply) => {
   const { id } = request.params;
   const query = { _id: new ObjectId(id), soldiers: [] };
   const duty = request.body;
-  const newDuty = {};
-  if (duty.name) { newDuty.name = duty.name; }
-  if (duty.location) { newDuty.location = duty.location; }
-  if (duty.time) { newDuty.time = duty.time; }
-  if (duty.constraints) { newDuty.constraints = duty.constraints; }
-  if (duty.soldiersRequired) { newDuty.soldiersRequired = duty.soldiersRequired; }
-  if (duty.value) { newDuty.value = duty.value; }
-  const result = await dutiesCollection.updateOne(query, { $set: newDuty });
+  const newDuty = { ...duty, _id: id };
+  const result = await dutiesCollection.updateOne(query, { $set: duty });
   newDuty._id = id;
   if (result) {
     const updatedDuty = await dutiesCollection.findOne(query);
@@ -85,13 +79,14 @@ const chooseSoldiers = async (duty) => {
   for (const soldier of soldiersArray) {
     if (!duty.constraints.includes(soldier._id) && !soldier.limitations.includes(duty._id)) {
       score = 0;
+      let promises = [];
       for (const dutyId of soldier.duties) {
         try {
-          soldiersDuty = await dutiesCollection.findOne({ _id: new ObjectId(dutyId) });
-          score += soldiersDuty.value;
-        } catch (error) {
-          throw(error);
-        }
+          promises.push(dutiesCollection.findOne({ _id: new ObjectId(dutyId) }));
+        } catch { }
+        Promise.all(promises).then((duty) => {
+          score += duty.value;
+        });
       }
       soldiersWithScore.push({ soldier, score });
     }
@@ -114,19 +109,20 @@ export const scheduleDuty = async (request, reply) => {
       reply.status(404).send(`The duty ${id} is already scheduled`);
     } else {
       const soldiers = await chooseSoldiers(duty);
-      for (const soldierId of soldiers) {
-        try {
-          await dutiesCollection.updateOne(query, { $push: { soldiers: soldierId }});
-          try {
-            await soldiersCollection.updateOne({ _id: soldierId }, { $push: { duties: id }});
-          } catch {
-            reply.status(404).send(`Cannot schedule the duty ${id}`)
-          }
-        } catch {
-          reply.status(404).send(`Cannot schedule the duty ${id}`)
-        }
-      }
-      reply.status(200).send(`The duty ${id} successfully scheduled to soldiers: ${soldiers}`);
+      reply.send(soldiers);
+      // for (const soldierId of soldiers) {
+      //   try {
+      //     await dutiesCollection.updateOne(query, { $push: { soldiers: soldierId }});
+      //     try {
+      //       await soldiersCollection.updateOne({ _id: soldierId }, { $push: { duties: id }});
+      //     } catch {
+      //       reply.status(404).send(`Cannot schedule the duty ${id}`)
+      //     }
+      //   } catch {
+      //     reply.status(404).send(`Cannot schedule the duty ${id}`)
+      //   }
+      // }
+      // reply.status(200).send(`The duty ${id} successfully scheduled to soldiers: ${soldiers}`);
     }
   }
 }
