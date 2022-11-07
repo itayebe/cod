@@ -8,13 +8,7 @@ const soldiersCollection = database.collection('soldiers');
 
 export const createSoldier = async (request, reply) => {
   const soldier = request.body;
-  const newSoldier = {
-    _id: soldier.id,
-    name: soldier.name,
-    degree: soldier.degree,
-    limitations: soldier.limitations,
-    duties: [],
-  };
+  const newSoldier = { ...soldier };
   const result = await soldiersCollection.insertOne(newSoldier);
   if (result) {
     reply.status(201).send(newSoldier);

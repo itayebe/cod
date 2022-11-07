@@ -1,0 +1,17 @@
+{
+    "order_id": "dd95dcce-bd31-48a0-9b6a-5554e6e82efd",
+    "items": [
+      {
+        "name": "dd95dcce-bd31-48a0-9b6a-5554e6e82efd/manifest.json",
+        "delivery": "success",
+        "location": "https://api.planet.com/compute/ops/download/?token=aaa",
+        "expires_at": "2019-09-24T05:06:54.601Z"
+      },
+      {
+        "name": "dd95dcce-bd31-48a0-9b6a-5554e6e82efd/PSScene4Band/20200922_183724_23_106a/20200922_183724_23_106a_metadata.json",
+        "delivery": "success",
+        "location": "https://api.planet.com/compute/ops/download/?token=bbb",
+        "expires_at": "2019-09-24T05:06:54.607Z"
+      }
+    ]
+  }
